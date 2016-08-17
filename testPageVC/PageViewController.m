@@ -23,6 +23,29 @@
 
 @implementation PageViewController
 
+//+ (void)load
+//{
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        Class class = [self class];
+//        
+//        SEL originalSelector = NSSelectorFromString(@"viewControllers");
+//        SEL swizzledSelector = @selector(test_handlePanGesture:);
+//        
+//        //printf("------%s-----\n", sel_getName(originalSelector));
+//        //IMP originalImp = class_getMethodImplementation(class, originalSelector);
+//        Method originalMethod = class_getInstanceMethod(class, originalSelector);
+//        Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
+//        
+//        BOOL success = class_addMethod(class, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod));
+//        if (success) {
+//            class_replaceMethod(class, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod));
+//        } else {
+//            method_exchangeImplementations(originalMethod, swizzledMethod);
+//        }
+//    });
+//}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -36,7 +59,18 @@
     [sendMessageButton addTarget:self action:@selector(messageButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [navigationView addSubview:sendMessageButton];
     [sendMessageButton sizeToFit];
-    sendMessageButton.center = navigationView.center;
+    CGPoint center = navigationView.center;
+    center.x = navigationView.center.x / 2.f;
+    sendMessageButton.center = center;
+    
+    UIButton * resetButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [resetButton setTitle:@"Reset Child" forState:UIControlStateNormal];
+    [resetButton addTarget:self action:@selector(resetChildVCs) forControlEvents:UIControlEventTouchUpInside];
+    [navigationView addSubview:resetButton];
+    [resetButton sizeToFit];
+    resetButton.center = navigationView.center;
+    center.x = navigationView.center.x * 3 / 2.f;
+    resetButton.center = center;
     
     _clVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CollectionViewController"];
     _clVC.inPageVC = YES;
@@ -48,6 +82,28 @@
     [self setViewControllers:@[_clVC] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:NULL];
     
     [self getPageVCAllVar];
+    [self getScrollView];
+}
+
+- (void)getScrollView
+{
+    for (UIView * subView in self.view.subviews) {
+        if ([subView isKindOfClass:NSClassFromString(@"_UIQueuingScrollView")]) {
+            
+            UIScrollView * scrollView = (UIScrollView *)subView;
+            
+            [scrollView addGestureRecognizer:self.test_panGestureRecognizer];
+            
+            // Forward the gesture events to the private handler of the onboard gesture recognizer.
+            NSArray *internalTargets = [scrollView.panGestureRecognizer valueForKey:@"targets"];
+            id internalTarget = [internalTargets.firstObject valueForKey:@"target"];
+            SEL internalAction = NSSelectorFromString(@"handlePan:");
+            self.test_panGestureRecognizer.delegate = self;
+            [self.test_panGestureRecognizer addTarget:internalTarget action:internalAction];
+            
+            scrollView.panGestureRecognizer.enabled = NO;
+        }
+    }
 }
 
 - (void)getPageVCAllVar
@@ -71,7 +127,12 @@
 
 - (void)sendMessage
 {
-    objc_msgSend(self, NSSelectorFromString(@"_scrollView"));
+    //objc_msgSend(self, NSSelectorFromString(@"_scrollView"));
+}
+
+- (void)resetChildVCs
+{
+    [self setViewControllers:@[_clVC] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:NULL];
 }
 
 - (IBAction)messageButtonClicked:(id)sender
@@ -125,6 +186,44 @@
     NSLog(@"touchesCancelled :");
 }
 
+- (void)test_handlePanGesture:(UIGestureRecognizer *)gestureRecognizer
+{
+    [self test_handlePanGesture:gestureRecognizer];
+    
+    
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    NSLog(@"gestureRecognizer : %@",gestureRecognizer);
+    NSLog(@"otherGestureRecognizer : %@",otherGestureRecognizer);
+//    if ([otherGestureRecognizer isKindOfClass:NSClassFromString(@"UIScrollViewDelayedTouchesBeganGestureRecognizer")]) {
+//        
+//        return NO;
+//    }
+    return YES;
+}
+
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+//{
+//    NSLog(@"gestureRecognizer : %@",gestureRecognizer);
+//    NSLog(@"otherGestureRecognizer : %@",otherGestureRecognizer);
+//    
+//    return YES;
+//}
+
+- (UIPanGestureRecognizer *)test_panGestureRecognizer
+{
+    UIPanGestureRecognizer *panGestureRecognizer = objc_getAssociatedObject(self, _cmd);
+    
+    if (!panGestureRecognizer) {
+        panGestureRecognizer = [[UIPanGestureRecognizer alloc] init];
+        panGestureRecognizer.maximumNumberOfTouches = 1;
+        
+        objc_setAssociatedObject(self, _cmd, panGestureRecognizer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return panGestureRecognizer;
+}
 
 /*
 #pragma mark - Navigation
