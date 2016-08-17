@@ -18,6 +18,8 @@
 		E8B454631D63341F00A4CFFD /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B454621D63341F00A4CFFD /* PageViewController.m */; };
 		E8B454661D63345100A4CFFD /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B454651D63345100A4CFFD /* CollectionViewController.m */; };
 		E8B454691D63345B00A4CFFD /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B454681D63345B00A4CFFD /* TableViewController.m */; };
+		E8B4546C1D64069100A4CFFD /* ChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B4546B1D64069100A4CFFD /* ChildViewController.m */; };
+		E8B4546F1D640A6F00A4CFFD /* ScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B4546E1D640A6F00A4CFFD /* ScrollViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,10 @@
 		E8B454651D63345100A4CFFD /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
 		E8B454671D63345B00A4CFFD /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		E8B454681D63345B00A4CFFD /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
+		E8B4546A1D64069100A4CFFD /* ChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChildViewController.h; sourceTree = "<group>"; };
+		E8B4546B1D64069100A4CFFD /* ChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildViewController.m; sourceTree = "<group>"; };
+		E8B4546D1D640A6F00A4CFFD /* ScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewController.h; sourceTree = "<group>"; };
+		E8B4546E1D640A6F00A4CFFD /* ScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +131,10 @@
 				E8B454651D63345100A4CFFD /* CollectionViewController.m */,
 				E8B454671D63345B00A4CFFD /* TableViewController.h */,
 				E8B454681D63345B00A4CFFD /* TableViewController.m */,
+				E8B4546A1D64069100A4CFFD /* ChildViewController.h */,
+				E8B4546B1D64069100A4CFFD /* ChildViewController.m */,
+				E8B4546D1D640A6F00A4CFFD /* ScrollViewController.h */,
+				E8B4546E1D640A6F00A4CFFD /* ScrollViewController.m */,
 			);
 			path = testPageVC;
 			sourceTree = "<group>";
@@ -287,10 +297,12 @@
 			files = (
 				E8B454361D63337C00A4CFFD /* ViewController.m in Sources */,
 				E8B454691D63345B00A4CFFD /* TableViewController.m in Sources */,
+				E8B4546C1D64069100A4CFFD /* ChildViewController.m in Sources */,
 				E8B454331D63337C00A4CFFD /* AppDelegate.m in Sources */,
 				E8B454301D63337C00A4CFFD /* main.m in Sources */,
 				E8B454661D63345100A4CFFD /* CollectionViewController.m in Sources */,
 				E8B454631D63341F00A4CFFD /* PageViewController.m in Sources */,
+				E8B4546F1D640A6F00A4CFFD /* ScrollViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

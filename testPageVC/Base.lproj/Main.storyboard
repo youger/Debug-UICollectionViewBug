@@ -9,11 +9,12 @@
         <scene sceneID="pvP-Vz-tvP">
             <objects>
                 <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="9Lx-3r-zyI" customClass="PageViewController" sceneMemberID="viewController">
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Syp-Yc-FP7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="141.5" y="455.5"/>
+            <point key="canvasLocation" x="145.5" y="455.5"/>
         </scene>
         <!--Collection View Controller-->
         <scene sceneID="q9K-um-Qcl">
@@ -240,6 +241,25 @@
             </objects>
             <point key="canvasLocation" x="-377.5" y="464.5"/>
         </scene>
+        <!--Child View Controller-->
+        <scene sceneID="DNr-BW-gsF">
+            <objects>
+                <viewController storyboardIdentifier="ChildViewController" id="kaS-UC-cCd" customClass="ChildViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1vh-HE-7td"/>
+                        <viewControllerLayoutGuide type="bottom" id="Wlq-Y3-Z8b"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vXo-ro-Wig">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TEH-3Q-ebY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="106.5" y="1216.5"/>
+        </scene>
         <!--Table View Controller-->
         <scene sceneID="FV2-lo-hcN">
             <objects>
@@ -268,6 +288,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PfK-Km-sm0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="552.5" y="1188.5"/>
+        </scene>
+        <!--Scroll View Controller-->
+        <scene sceneID="4uO-dX-0j3">
+            <objects>
+                <viewController storyboardIdentifier="ScrollViewController" id="JU7-Nn-Ut4" customClass="ScrollViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yDp-AA-vs3"/>
+                        <viewControllerLayoutGuide type="bottom" id="aiU-ON-fe3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="g0X-74-QBu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" canCancelContentTouches="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INk-BA-zuy">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="INk-BA-zuy" firstAttribute="leading" secondItem="g0X-74-QBu" secondAttribute="leading" id="UOj-si-81l"/>
+                            <constraint firstItem="aiU-ON-fe3" firstAttribute="top" secondItem="INk-BA-zuy" secondAttribute="bottom" id="cLj-A2-WIJ"/>
+                            <constraint firstAttribute="trailing" secondItem="INk-BA-zuy" secondAttribute="trailing" id="dlT-eI-6vM"/>
+                            <constraint firstItem="INk-BA-zuy" firstAttribute="top" secondItem="g0X-74-QBu" secondAttribute="top" id="jm8-e9-yGd"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="scrollView" destination="INk-BA-zuy" id="zNG-ZV-BFS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mmY-gU-kvv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="118.5" y="-239.5"/>
         </scene>
     </scenes>
 </document>

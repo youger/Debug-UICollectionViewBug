@@ -27,6 +27,10 @@ static NSString * const reuseIdentifier = @"Cell";
     
     self.collectionView.backgroundColor = [UIColor whiteColor];
     
+    if (_inPageVC) {
+        
+        self.collectionView.frame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64);
+    }
     // Do any additional setup after loading the view.
 }
 
