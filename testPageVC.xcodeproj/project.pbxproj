@@ -20,6 +20,8 @@
 		E8B454691D63345B00A4CFFD /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B454681D63345B00A4CFFD /* TableViewController.m */; };
 		E8B4546C1D64069100A4CFFD /* ChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B4546B1D64069100A4CFFD /* ChildViewController.m */; };
 		E8B4546F1D640A6F00A4CFFD /* ScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B4546E1D640A6F00A4CFFD /* ScrollViewController.m */; };
+		E8B454721D655EEB00A4CFFD /* MyCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B454711D655EEB00A4CFFD /* MyCollectionViewController.m */; };
+		E8B454751D655FD900A4CFFD /* MyCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B454741D655FD900A4CFFD /* MyCollectionView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,10 @@
 		E8B4546B1D64069100A4CFFD /* ChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildViewController.m; sourceTree = "<group>"; };
 		E8B4546D1D640A6F00A4CFFD /* ScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewController.h; sourceTree = "<group>"; };
 		E8B4546E1D640A6F00A4CFFD /* ScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewController.m; sourceTree = "<group>"; };
+		E8B454701D655EEB00A4CFFD /* MyCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCollectionViewController.h; sourceTree = "<group>"; };
+		E8B454711D655EEB00A4CFFD /* MyCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCollectionViewController.m; sourceTree = "<group>"; };
+		E8B454731D655FD900A4CFFD /* MyCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCollectionView.h; sourceTree = "<group>"; };
+		E8B454741D655FD900A4CFFD /* MyCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCollectionView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +141,10 @@
 				E8B4546B1D64069100A4CFFD /* ChildViewController.m */,
 				E8B4546D1D640A6F00A4CFFD /* ScrollViewController.h */,
 				E8B4546E1D640A6F00A4CFFD /* ScrollViewController.m */,
+				E8B454701D655EEB00A4CFFD /* MyCollectionViewController.h */,
+				E8B454711D655EEB00A4CFFD /* MyCollectionViewController.m */,
+				E8B454731D655FD900A4CFFD /* MyCollectionView.h */,
+				E8B454741D655FD900A4CFFD /* MyCollectionView.m */,
 			);
 			path = testPageVC;
 			sourceTree = "<group>";
@@ -295,8 +305,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8B454751D655FD900A4CFFD /* MyCollectionView.m in Sources */,
 				E8B454361D63337C00A4CFFD /* ViewController.m in Sources */,
 				E8B454691D63345B00A4CFFD /* TableViewController.m in Sources */,
+				E8B454721D655EEB00A4CFFD /* MyCollectionViewController.m in Sources */,
 				E8B4546C1D64069100A4CFFD /* ChildViewController.m in Sources */,
 				E8B454331D63337C00A4CFFD /* AppDelegate.m in Sources */,
 				E8B454301D63337C00A4CFFD /* main.m in Sources */,

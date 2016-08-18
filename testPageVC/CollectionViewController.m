@@ -8,7 +8,7 @@
 
 #import "CollectionViewController.h"
 
-@interface CollectionViewController ()
+@interface CollectionViewController ()<UIGestureRecognizerDelegate>
 
 @end
 
@@ -32,6 +32,11 @@ static NSString * const reuseIdentifier = @"Cell";
         self.collectionView.frame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64);
     }
     // Do any additional setup after loading the view.
+    
+    UIPanGestureRecognizer * pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(justForTest:)];
+    pan.delegate = self;
+    [self.collectionView addGestureRecognizer:pan];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,6 +53,22 @@ static NSString * const reuseIdentifier = @"Cell";
     // Pass the selected object to the new view controller.
 }
 */
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    NSLog(@"gestureRecognizer : %@",gestureRecognizer);
+    NSLog(@"otherGestureRecognizer : %@",otherGestureRecognizer);
+    if ([otherGestureRecognizer isKindOfClass:NSClassFromString(@"UIScrollViewDelayedTouchesBeganGestureRecognizer")]) {
+        
+        otherGestureRecognizer.delaysTouchesBegan = NO;
+        return NO;
+    }
+    //[self getScrollView];
+    return YES;
+}
+
+- (void)justForTest:(id)sender
+{}
 
 #pragma mark <UICollectionViewDataSource>
 

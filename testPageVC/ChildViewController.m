@@ -29,22 +29,22 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    NSLog(@"touchesBegan :");
+    NSLog(@"%@ touchesBegan :", NSStringFromClass([self class]));
 }
 
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    NSLog(@"touchesMoved :");
+    NSLog(@"%@ touchesMoved :", NSStringFromClass([self class]));
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    NSLog(@"touchesEnded :");
+    NSLog(@"%@ touchesEnded :", NSStringFromClass([self class]));
 }
 
 - (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    NSLog(@"touchesCancelled :");
+    NSLog(@"%@ touchesCancelled :", NSStringFromClass([self class]));
 }
 
 /*

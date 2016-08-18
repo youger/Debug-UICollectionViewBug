@@ -222,6 +222,60 @@
             </objects>
             <point key="canvasLocation" x="552.5" y="455.5"/>
         </scene>
+        <!--My Collection View Controller-->
+        <scene sceneID="plE-bq-dDC">
+            <objects>
+                <viewController storyboardIdentifier="MyCollectionViewController" id="UkB-xF-HPX" customClass="MyCollectionViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="X3X-4r-Tnu"/>
+                        <viewControllerLayoutGuide type="bottom" id="LwT-Ud-qUW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0dL-QM-Xfs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cMQ-Vh-UdO" customClass="MyCollectionView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MbU-43-eaS">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="jhq-6f-2Ut">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="UkB-xF-HPX" id="zat-ic-qzD"/>
+                                    <outlet property="delegate" destination="UkB-xF-HPX" id="EZr-Uf-Iwe"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cMQ-Vh-UdO" firstAttribute="top" secondItem="0dL-QM-Xfs" secondAttribute="top" id="75W-sZ-rHg"/>
+                            <constraint firstItem="LwT-Ud-qUW" firstAttribute="top" secondItem="cMQ-Vh-UdO" secondAttribute="bottom" id="XU6-8L-OAZ"/>
+                            <constraint firstAttribute="trailing" secondItem="cMQ-Vh-UdO" secondAttribute="trailing" id="dr0-oG-4zk"/>
+                            <constraint firstItem="cMQ-Vh-UdO" firstAttribute="leading" secondItem="0dL-QM-Xfs" secondAttribute="leading" id="rUk-Cu-jtf"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="collectionView" destination="cMQ-Vh-UdO" id="uGF-ZY-iYY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Iiz-0b-njf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1433.5" y="433.5"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="qvM-4G-Yp9">
             <objects>

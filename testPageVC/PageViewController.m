@@ -8,6 +8,7 @@
 
 #import "PageViewController.h"
 #import "CollectionViewController.h"
+#import "MyCollectionViewController.h"
 #import "TableViewController.h"
 #import "ChildViewController.h"
 #import <objc/runtime.h>
@@ -16,6 +17,7 @@
 @interface PageViewController ()<UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) CollectionViewController * clVC;
+@property (strong, nonatomic) MyCollectionViewController * myClVC;
 @property (strong, nonatomic) TableViewController * tbVC;
 @property (strong, nonatomic) ChildViewController * childVC;
 
@@ -73,6 +75,7 @@
     resetButton.center = center;
     
     _clVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CollectionViewController"];
+    _myClVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MyCollectionViewController"];
     _clVC.inPageVC = YES;
     _tbVC = [self.storyboard instantiateViewControllerWithIdentifier:@"TableViewController"];
     _childVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ChildViewController"];
@@ -81,8 +84,8 @@
     self.delegate = self;
     [self setViewControllers:@[_clVC] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:NULL];
     
-    [self getPageVCAllVar];
-    [self getScrollView];
+    //[self getPageVCAllVar];
+    //[self getScrollView];
 }
 
 - (void)getScrollView
@@ -103,6 +106,18 @@
             
             scrollView.panGestureRecognizer.enabled = NO;
         }
+    }
+}
+
+- (void)travelSubviewsOfView:(UIView *)view
+{
+    if (view == nil) {
+        return;
+    }
+    NSLog(@"%@ isExclusiveTouch %d", NSStringFromClass([view class]), view.isExclusiveTouch);
+    for (UIView * subview in view.subviews) {
+        
+        [self travelSubviewsOfView:subview];
     }
 }
 
@@ -128,6 +143,7 @@
 - (void)sendMessage
 {
     //objc_msgSend(self, NSSelectorFromString(@"_scrollView"));
+    [self travelSubviewsOfView:self.view];
 }
 
 - (void)resetChildVCs
@@ -168,39 +184,64 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    NSLog(@"touchesBegan :");
+    NSLog(@"%@ touchesBegan :", NSStringFromClass([self class]));
 }
 
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    NSLog(@"touchesMoved :");
+    NSLog(@"%@ touchesMoved :", NSStringFromClass([self class]));
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    NSLog(@"touchesEnded :");
+    NSLog(@"%@ touchesEnded :", NSStringFromClass([self class]));
 }
 
 - (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    NSLog(@"touchesCancelled :");
+    NSLog(@"%@ touchesCancelled :", NSStringFromClass([self class]));
 }
+
 
 - (void)test_handlePanGesture:(UIGestureRecognizer *)gestureRecognizer
 {
     [self test_handlePanGesture:gestureRecognizer];
     
-    
+}
+
+- (void)handlePan:(UIGestureRecognizer *)gestureRecognizer
+{
+    switch (gestureRecognizer.state) {
+        case UIGestureRecognizerStateBegan:
+            NSLog(@"UIGestureRecognizerStateBegan");
+            break;
+        case UIGestureRecognizerStateChanged:
+            NSLog(@"UIGestureRecognizerStateChanged");
+            break;
+        case UIGestureRecognizerStateCancelled:
+            NSLog(@"UIGestureRecognizerStateCancelled");
+            break;
+        case UIGestureRecognizerStatePossible:
+            NSLog(@"UIGestureRecognizerStatePossible");
+            break;
+        case UIGestureRecognizerStateRecognized:
+            NSLog(@"UIGestureRecognizerStateRecognized");
+            break;
+        default:
+            break;
+    }
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
     NSLog(@"gestureRecognizer : %@",gestureRecognizer);
     NSLog(@"otherGestureRecognizer : %@",otherGestureRecognizer);
-//    if ([otherGestureRecognizer isKindOfClass:NSClassFromString(@"UIScrollViewDelayedTouchesBeganGestureRecognizer")]) {
-//        
-//        return NO;
-//    }
+    if ([otherGestureRecognizer isKindOfClass:NSClassFromString(@"UIScrollViewDelayedTouchesBeganGestureRecognizer")]) {
+        
+        otherGestureRecognizer.delaysTouchesBegan = NO;
+        return NO;
+    }
+    //[self getScrollView];
     return YES;
 }
 
