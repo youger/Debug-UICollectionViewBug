@@ -32,8 +32,9 @@
     [self.view addSubview:navigationView];
     
     _clVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CollectionViewController"];
-    _clVC.inPageVC = YES;
+    _clVC.top = 64.f;
     _tbVC = [self.storyboard instantiateViewControllerWithIdentifier:@"TableViewController"];
+    _tbVC.top = 64.f;
     _childVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ChildViewController"];
 
     [self addChildViewController:_clVC];

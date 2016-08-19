@@ -27,16 +27,18 @@ static NSString * const reuseIdentifier = @"Cell";
     
     self.collectionView.backgroundColor = [UIColor whiteColor];
     
-    if (_inPageVC) {
-        
-        self.collectionView.frame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64);
-    }
+    self.collectionView.frame = CGRectMake(0, _top, self.view.bounds.size.width, self.view.bounds.size.height - _top);
     // Do any additional setup after loading the view.
     
     UIPanGestureRecognizer * pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(justForTest:)];
     pan.delegate = self;
     [self.collectionView addGestureRecognizer:pan];
     
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,12 +58,14 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
-    NSLog(@"gestureRecognizer : %@",gestureRecognizer);
-    NSLog(@"otherGestureRecognizer : %@",otherGestureRecognizer);
+    NSLog(@"gestureRecognizer %@: %@",NSStringFromClass([gestureRecognizer class]), NSStringFromClass([gestureRecognizer.view class]));
+    NSLog(@"otherGestureRecognizer %@: %@",NSStringFromClass([otherGestureRecognizer class]), otherGestureRecognizer.view);
+    NSLog(@"delaysTouchesBegan %d", otherGestureRecognizer.delaysTouchesBegan);
+    printf("\n");
     if ([otherGestureRecognizer isKindOfClass:NSClassFromString(@"UIScrollViewDelayedTouchesBeganGestureRecognizer")]) {
         
-        otherGestureRecognizer.delaysTouchesBegan = NO;
-        return NO;
+        //otherGestureRecognizer.delaysTouchesBegan = NO;
+        //return NO;
     }
     //[self getScrollView];
     return YES;
@@ -87,7 +91,7 @@ static NSString * const reuseIdentifier = @"Cell";
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     // Configure the cell
-    cell.backgroundColor = [UIColor grayColor];
+    cell.backgroundColor = [UIColor brownColor];
     
     return cell;
 }

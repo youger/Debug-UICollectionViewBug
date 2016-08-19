@@ -27,6 +27,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
+    UIButton * resetButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [resetButton setTitle:@"Reset" forState:UIControlStateNormal];
+    [resetButton setBackgroundImage:[UIImage imageNamed:@"circle"] forState:UIControlStateNormal];
+    [resetButton addTarget:self action:@selector(resetButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:resetButton];
+    [resetButton sizeToFit];
+    resetButton.frame = CGRectMake((CGRectGetWidth(self.view.bounds) - 80)/2, CGRectGetHeight(self.view.bounds)- 120, 80, 80);
+    resetButton.layer.cornerRadius = 40.f;
+    
     UIPageViewController * pageVC = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     
     _childPageVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
@@ -42,11 +51,19 @@
     [self.view addSubview:pageVC.view];
     
     [pageVC didMoveToParentViewController:self];
+    
+    [self.view bringSubviewToFront:resetButton];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)resetButtonClicked:(id)sender
+{
+    UIViewController * initialViewController = [self.storyboard instantiateInitialViewController];
+    [[UIApplication sharedApplication].keyWindow setRootViewController:initialViewController];
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController

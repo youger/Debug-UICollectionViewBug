@@ -76,16 +76,22 @@
     
     _clVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CollectionViewController"];
     _myClVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MyCollectionViewController"];
-    _clVC.inPageVC = YES;
+    _clVC.top = 64.f;
     _tbVC = [self.storyboard instantiateViewControllerWithIdentifier:@"TableViewController"];
+    _tbVC.top = 64.f;
     _childVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ChildViewController"];
     
     self.dataSource = self;
     self.delegate = self;
-    [self setViewControllers:@[_clVC] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:NULL];
+    [self setViewControllers:@[_myClVC] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:NULL];
     
     //[self getPageVCAllVar];
     //[self getScrollView];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 - (void)getScrollView
@@ -148,7 +154,7 @@
 
 - (void)resetChildVCs
 {
-    [self setViewControllers:@[_clVC] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:NULL];
+    [self setViewControllers:@[_myClVC] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:NULL];
 }
 
 - (IBAction)messageButtonClicked:(id)sender
@@ -156,31 +162,67 @@
     [self sendMessage];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+#pragma mark - UIPageViewControllerDelegate
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
-    if ([viewController isEqual:_clVC]) {
+    if ([viewController isEqual:_myClVC]) {
         
         return _childVC;
     }else{
-        return _clVC;
+        return _myClVC;
     }
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
-    if ([viewController isEqual:_clVC]) {
+    if ([viewController isEqual:_myClVC]) {
         
         return _childVC;
     }else{
-        return _clVC;
+        return _myClVC;
     }
 }
 
+#pragma mark - UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    NSLog(@"gestureRecognizer : %@",gestureRecognizer);
+    NSLog(@"otherGestureRecognizer : %@",otherGestureRecognizer);
+    if ([otherGestureRecognizer isKindOfClass:NSClassFromString(@"UIScrollViewDelayedTouchesBeganGestureRecognizer")]) {
+        
+        otherGestureRecognizer.delaysTouchesBegan = NO;
+        return NO;
+    }
+    //[self getScrollView];
+    return YES;
+}
+
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+//{
+//    NSLog(@"gestureRecognizer : %@",gestureRecognizer);
+//    NSLog(@"otherGestureRecognizer : %@",otherGestureRecognizer);
+//
+//    return YES;
+//}
+
+#pragma mark - Getter
+
+- (UIPanGestureRecognizer *)test_panGestureRecognizer
+{
+    UIPanGestureRecognizer *panGestureRecognizer = objc_getAssociatedObject(self, _cmd);
+    
+    if (!panGestureRecognizer) {
+        panGestureRecognizer = [[UIPanGestureRecognizer alloc] init];
+        panGestureRecognizer.maximumNumberOfTouches = 1;
+        
+        objc_setAssociatedObject(self, _cmd, panGestureRecognizer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return panGestureRecognizer;
+}
+
+#pragma mark - Handler touch event
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
@@ -209,6 +251,8 @@
     
 }
 
+#pragma mark - Handle gesture recognizer
+
 - (void)handlePan:(UIGestureRecognizer *)gestureRecognizer
 {
     switch (gestureRecognizer.state) {
@@ -231,49 +275,5 @@
             break;
     }
 }
-
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-    NSLog(@"gestureRecognizer : %@",gestureRecognizer);
-    NSLog(@"otherGestureRecognizer : %@",otherGestureRecognizer);
-    if ([otherGestureRecognizer isKindOfClass:NSClassFromString(@"UIScrollViewDelayedTouchesBeganGestureRecognizer")]) {
-        
-        otherGestureRecognizer.delaysTouchesBegan = NO;
-        return NO;
-    }
-    //[self getScrollView];
-    return YES;
-}
-
-//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-//{
-//    NSLog(@"gestureRecognizer : %@",gestureRecognizer);
-//    NSLog(@"otherGestureRecognizer : %@",otherGestureRecognizer);
-//    
-//    return YES;
-//}
-
-- (UIPanGestureRecognizer *)test_panGestureRecognizer
-{
-    UIPanGestureRecognizer *panGestureRecognizer = objc_getAssociatedObject(self, _cmd);
-    
-    if (!panGestureRecognizer) {
-        panGestureRecognizer = [[UIPanGestureRecognizer alloc] init];
-        panGestureRecognizer.maximumNumberOfTouches = 1;
-        
-        objc_setAssociatedObject(self, _cmd, panGestureRecognizer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
-    return panGestureRecognizer;
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

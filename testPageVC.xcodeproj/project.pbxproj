@@ -133,14 +133,14 @@
 				E8B4542E1D63337C00A4CFFD /* Supporting Files */,
 				E8B454611D63341F00A4CFFD /* PageViewController.h */,
 				E8B454621D63341F00A4CFFD /* PageViewController.m */,
+				E8B4546D1D640A6F00A4CFFD /* ScrollViewController.h */,
+				E8B4546E1D640A6F00A4CFFD /* ScrollViewController.m */,
 				E8B454641D63345100A4CFFD /* CollectionViewController.h */,
 				E8B454651D63345100A4CFFD /* CollectionViewController.m */,
 				E8B454671D63345B00A4CFFD /* TableViewController.h */,
 				E8B454681D63345B00A4CFFD /* TableViewController.m */,
 				E8B4546A1D64069100A4CFFD /* ChildViewController.h */,
 				E8B4546B1D64069100A4CFFD /* ChildViewController.m */,
-				E8B4546D1D640A6F00A4CFFD /* ScrollViewController.h */,
-				E8B4546E1D640A6F00A4CFFD /* ScrollViewController.m */,
 				E8B454701D655EEB00A4CFFD /* MyCollectionViewController.h */,
 				E8B454711D655EEB00A4CFFD /* MyCollectionViewController.m */,
 				E8B454731D655FD900A4CFFD /* MyCollectionView.h */,
@@ -540,6 +540,7 @@
 				E8B4545A1D63337D00A4CFFD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E8B4545B1D63337D00A4CFFD /* Build configuration list for PBXNativeTarget "testPageVCTests" */ = {
 			isa = XCConfigurationList;
@@ -548,6 +549,7 @@
 				E8B4545D1D63337D00A4CFFD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E8B4545E1D63337D00A4CFFD /* Build configuration list for PBXNativeTarget "testPageVCUITests" */ = {
 			isa = XCConfigurationList;
@@ -556,6 +558,7 @@
 				E8B454601D63337D00A4CFFD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

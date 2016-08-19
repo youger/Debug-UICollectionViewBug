@@ -10,6 +10,6 @@
 
 @interface CollectionViewController : UICollectionViewController
 
-@property (nonatomic) BOOL inPageVC;
+@property (nonatomic) CGFloat top;
 
 @end
