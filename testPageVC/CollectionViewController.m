@@ -100,7 +100,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"didSelectItemAtIndexPath %@", indexPath);
+    NSLog(@"-collectionView:didSelectItemAtIndexPath %@", indexPath);
 }
 
 /*

@@ -222,6 +222,25 @@
             </objects>
             <point key="canvasLocation" x="552.5" y="455.5"/>
         </scene>
+        <!--Third Collection View Controller-->
+        <scene sceneID="V3b-w3-3WF">
+            <objects>
+                <viewController storyboardIdentifier="ThirdCollectionViewController" id="4dC-u0-ABF" customClass="ThirdCollectionViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Kkr-L1-nBi"/>
+                        <viewControllerLayoutGuide type="bottom" id="NvK-5B-DtA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0bh-fQ-RTj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mvh-V9-gLe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="693" y="-296"/>
+        </scene>
         <!--My Collection View Controller-->
         <scene sceneID="plE-bq-dDC">
             <objects>

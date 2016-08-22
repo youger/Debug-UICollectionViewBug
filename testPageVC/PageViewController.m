@@ -9,6 +9,7 @@
 #import "PageViewController.h"
 #import "CollectionViewController.h"
 #import "MyCollectionViewController.h"
+#import "ThirdCollectionViewController.h"
 #import "TableViewController.h"
 #import "ChildViewController.h"
 #import <objc/runtime.h>
@@ -18,6 +19,7 @@
 
 @property (strong, nonatomic) CollectionViewController * clVC;
 @property (strong, nonatomic) MyCollectionViewController * myClVC;
+@property (strong, nonatomic) ThirdCollectionViewController * thirdClVC;
 @property (strong, nonatomic) TableViewController * tbVC;
 @property (strong, nonatomic) ChildViewController * childVC;
 
@@ -75,8 +77,9 @@
     resetButton.center = center;
     
     _clVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CollectionViewController"];
-    _myClVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MyCollectionViewController"];
     _clVC.top = 64.f;
+    _myClVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MyCollectionViewController"];
+    _thirdClVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ThirdCollectionViewController"];
     _tbVC = [self.storyboard instantiateViewControllerWithIdentifier:@"TableViewController"];
     _tbVC.top = 64.f;
     _childVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ChildViewController"];

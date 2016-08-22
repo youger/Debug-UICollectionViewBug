@@ -1,31 +1,26 @@
 //
-//  MyCollectionViewController.m
+//  ThirdCollectionViewController.m
 //  testPageVC
 //
-//  Created by Jingyue on 8/18/16.
+//  Created by Jingyue on 8/22/16.
 //  Copyright © 2016 Jingyue. All rights reserved.
 //
 
-#import "MyCollectionViewController.h"
-#import "MyCollectionView.h"
+#import "ThirdCollectionViewController.h"
 
 static NSString * const reuseIdentifier = @"Cell";
 
-@interface MyCollectionViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
-
-@property (weak, nonatomic) IBOutlet MyCollectionView *collectionView;
+@interface ThirdCollectionViewController ()
 
 @end
 
-@implementation MyCollectionViewController
+@implementation ThirdCollectionViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-    
-    self.collectionView.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,25 +46,26 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)collectionView:(PSTCollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
     return 20;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+- (PSTCollectionViewCell *)collectionView:(PSTCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    PSTCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     // Configure the cell
-    cell.backgroundColor = [UIColor grayColor];
+    cell.backgroundColor = [UIColor purpleColor];
     
     return cell;
 }
 
 #pragma mark <UICollectionViewDelegate>
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+- (void)collectionView:(PSTCollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"my -collectionView:didSelectItemAtIndexPath %@", indexPath);
+    NSLog(@"third -collectionView:didSelectItemAtIndexPath %@", indexPath);
 }
 
 @end
